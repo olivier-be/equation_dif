@@ -8,7 +8,7 @@ int main() {
     vector <int> tab_position;
     vector <string> tab_valeur;
     char z;
-    string equation_dif("1y+2+2+2"),valeur,reponce;
+    string equation_dif("1y=2+5/2*6+22"),valeur,reponce;
     string const alphabet("abcdefghijklmnopqrdtuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     cout << char(255)<<"choisie ta forme d'equations differencielles avec pour info prime = ' \n";
     //cin >> equation_dif;
@@ -20,14 +20,6 @@ int main() {
         {
             tab_position.push_back(i);
             cout << i<<"c "<<tab_position[tab_position.size() - 1]<<endl;
-        }
-        else if (int(z)>=65 and int(z)<=123 ){
-            for (int r=0;r<=alphabet.size();r++){
-                if (alphabet[r]==z){
-                    tab_position.push_back(i);
-                    cout << i<<"c "<<tab_position[tab_position.size() - 1]<<endl;
-                }
-            }
         }
         else {cout << i<<"b"<<endl;}
 
@@ -55,12 +47,19 @@ int main() {
                 pos_act++;
                 break;
             }
-            else if (pos_act == tab_position[tab_position.size() - 1]){
+            else if (pos_act == tab_position[tab_position.size() - 1] and (equation_dif[i]=='+' or equation_dif[i]=='=' or equation_dif[i]==' ' or equation_dif[i]=='/' or equation_dif[i]=='*')){
                 valeur=equation_dif[pos_act];
                 tab_valeur.push_back(valeur);
                 cout<<"push_back "<<valeur<<endl;
                 pos_act++;
                 break;
+            }
+            else if (pos_act == tab_position[tab_position.size() - 1]){
+                valeur = valeur + equation_dif[pos_act];
+                cout<<"valeur "<<valeur<<endl;
+                tab_valeur.push_back(valeur);
+                cout<<"push_back "<<valeur<<endl;
+                pos_act++;
             }
             else{
                 valeur = valeur + equation_dif[pos_act];
