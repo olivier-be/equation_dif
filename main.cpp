@@ -8,7 +8,7 @@ int main() {
     vector <int> tab_position;
     vector <string> tab_valeur;
     char z;
-    string equation_dif("1+2"),valeur,reponce;
+    string equation_dif("1+2+2+2"),valeur,reponce;
     cout << "choisie ta forme d'equations differencielles avec pour info prime = ' \n";
     //cin >> equation_dif;
     taille= equation_dif.size()-1;
@@ -66,11 +66,14 @@ int main() {
         else{break;}
         cout<<pos_act<<" a "<< pos_fut<<endl;
     }
-    cout << tab_valeur.size() << endl;
-    for (int e = 0; e <= tab_valeur.size(); e++) {
-        cout << tab_valeur[e]<<"  ab "<<tab_position[e]<<endl;
+    cout << tab_position.size() << endl;
+    for (int e = 0; e <= tab_valeur.size()-1; e++) {
+        if (e!=0){cout << tab_valeur[e]<<"  ab "<<tab_position[e-1]<<endl;}
+        else{cout << tab_valeur[e]<<"  ab "<<0<<endl;}
+    }
+    for (int e = 0; e <= tab_valeur.size()-1; e++) {
+        cout << tab_valeur[e]<<" ";
     }
 
     return 0;
 }
-
