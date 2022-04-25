@@ -8,7 +8,7 @@ int main() {
     vector <int> tab_position;
     vector <string> tab_valeur;
     char z;
-    string equation_dif("y5=10/2y'+25+30"),valeur,reponce;
+    string equation_dif("1+2"),valeur,reponce;
     cout << "choisie ta forme d'equations differencielles avec pour info prime = ' \n";
     //cin >> equation_dif;
     taille= equation_dif.size()-1;
@@ -16,41 +16,61 @@ int main() {
     {
         z=equation_dif[i];
         if (z=='+' or z=='=' or z==' ' or z=='/')
-    {
-        tab_position.push_back(i);
-        cout << i<<"c"<<endl;
-    }
-        cout << i<<"b"<<endl;
+        {
+            tab_position.push_back(i);
+            cout << i<<"c "<<tab_position[tab_position.size() - 1]<<endl;
+        }
+        else {cout << i<<"b"<<endl;}
+
     }
     tab_position.push_back(taille);
-    cout << tab_position.size()<<endl;
+    cout<<"asdfqsdf"<<taille<<endl;
     pos_act=0;
     pos_fut=tab_position[0];
-    for (int i=0;i<=tab_position.size();i++) {
-        valeur = "";
-        cout << i << "zzzzzzzzzzzzzzzzz\n";
-        cout << valeur << endl;
-
-            for (int e = pos_act; e <= pos_fut+1 ; e++) {
-                if (e==tab_position[i] and e!= tab_position[tab_position.size()-1]){
-                    tab_valeur.push_back(valeur);
-                    cout << valeur << " seconde " << endl;
-                    valeur=equation_dif[e];
-                    tab_valeur.push_back(valeur);
-                }
-                else{
-                    valeur = valeur + equation_dif[e];
-                }
-                if (e== tab_position[tab_position.size()-1]){tab_valeur.push_back(valeur);}
-                pos_act=e;
-                pos_fut=tab_position[i];
-                cout<<pos_act<<" a "<< pos_fut<<endl;
-            }
+    cout<<pos_act<<" a "<< pos_fut<<endl;
+    for (int e = 0; e <= tab_position.size()-1; e++) {
+        cout << e<<"  ab "<<tab_position[e]<<endl;
     }
+    for (int i=0;i<=tab_position.size()-1;i++) {
+        valeur = "";
+        cout <<"valeur est"<< valeur <<" et i "<< i << " zzzzzzzzzzzzzzzzz\n";
+        cout <<"pos_act= "<<pos_act<<" et pos_fut= "<<pos_fut<<endl;
+        while(pos_act<=pos_fut) {
+            if (pos_act >= tab_position[i] and pos_act != tab_position[tab_position.size() - 1]){
+                if (valeur!=""){tab_valeur.push_back(valeur);
+                cout<<"push_back "<<valeur<<endl;}
+                cout << equation_dif[pos_act] << " seconde " << endl;
+                valeur=equation_dif[pos_act];
+                tab_valeur.push_back(valeur);
+                cout<<"push_back "<<valeur<<endl;
+                pos_act++;
+                break;
+            }
+            else if (pos_act == tab_position[tab_position.size() - 1]){
+                valeur=equation_dif[pos_act];
+                tab_valeur.push_back(valeur);
+                cout<<"push_back "<<valeur<<endl;
+                pos_act++;
+                break;
+            }
+            else{
+                valeur = valeur + equation_dif[pos_act];
+                cout<<"valeur "<<valeur<<endl;
+            }
+            pos_act++;
 
-    for (int e = 0; e <= tab_valeur.size()-1; e++) {
-        cout << tab_valeur[e]<<" ";
+        }
+        if (taille>=pos_fut){
+            pos_fut=tab_position[i+1];
+            cout<<pos_act<<"test last"<< pos_fut<<endl;}
+        else{break;}
+        cout<<pos_act<<" a "<< pos_fut<<endl;
+    }
+    cout << tab_valeur.size() << endl;
+    for (int e = 0; e <= tab_valeur.size(); e++) {
+        cout << tab_valeur[e]<<"  ab "<<tab_position[e]<<endl;
     }
 
     return 0;
 }
+
