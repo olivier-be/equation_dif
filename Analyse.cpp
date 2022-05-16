@@ -14,8 +14,6 @@ void Analyse::analyse_position()
     char z;
     string valeur,reponce;
     string const alphabet("abcdefghijklmnopqrdtuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    cout << char(255)<<"choisie ta forme d'equations differencielles avec pour info prime = ' \n";
-    //cin >> equation_dif;
     taille= equation_dif.size()-1;
     for (int i=0;i<=taille;i++)
     {
