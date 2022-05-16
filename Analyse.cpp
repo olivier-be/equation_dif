@@ -1,29 +1,75 @@
 #include<string>
 #include "Analyse.h"
 #include "iostream"
+#include <sstream>
 using namespace std;
 
 Analyse::Analyse(string equation_dif){
     this ->equation_dif=equation_dif;
 }
 
-vector<int> Analyse::get_tab_position(){return tab_position;}
-vector<string> Analyse::get_tab_valeur(){return tab_valeur;}
+vector<string> Analyse::verif_valeur() {
+    int temp,resul,mutiplicateur,compteur(0);
+    for (int i;i<10;i++){
+        std::ostringstream tempi;
+        tempi<<i;
+        string iresult(tempi.str());
+        if (equation_dif[tab_positiony[tab_position[0]]-1]==iresult[0]){
+            string multiplicateurtemp;
+            while( equation_dif[tab_positiony[tab_position[0]]-1]-compteur; == ' ')
+        if (tab_position[2]>tab_position[0]){
+            for (int e;e <tab_valeur.size();e++){
+                if (tab_valeur[e].size()-1=='y'){
+                    for(int value;value<tab_valeur[e].size()-2;value++){
+                        std::istringstream iss(tab_valeur[value]);
+                        iss>>temp;
+                        resul+=temp*multiplies
+                    }
+                    std::ostringstream oss;
+
+                }}}
+    }}
+
+}
+
+
+vector<int> Analyse::get_tab_position(){
+    cout <<tab_position.size()<<endl;
+    for (int i(0);i<tab_position.size();i++){
+        cout <<tab_position[i]<<" ";}
+    cout<<"\n";
+    return tab_position;}
+
+
+vector<string> Analyse::get_tab_valeur(){
+    cout <<tab_valeur.size()<<endl;
+    for (int i(0);i<tab_valeur.size();i++){
+        cout <<tab_valeur[i]<<" ";}
+    cout<<"\n";
+    return tab_valeur;}
+
+
 int Analyse::get_tab_positiony() {
     string z;
-    for (int i; i < equation_dif.size() - 1; i++) {
+    tab_position[0]=-1;
+    for (int i(0); i < equation_dif.size() - 1; i++) {
         z = equation_dif[i];
-        if (z == "y" and tab_position[0] == -1) {
-            if (equation_dif[i + 1] == char(39)) { tab_positiony[0] = 1, tab_positiony[1] = i; }
-            else { tab_positiony[1] = i; }
-        } else if (z == "y") {
-            if (tab_position[0] == -1) {
-                if (equation_dif[i + 1] == char(39)) { tab_positiony[0] = 1, tab_positiony[3] = i; }
-                else { tab_positiony[3] = i; }
-            }
+        cout<<z<<" test "<<i<<endl;
+        if (z=="="){tab_positiony[2]=i; cout<<tab_positiony[2]<<endl;}
+        if (z == "y" and tab_positiony[0] == -1) {
+            cout << "true"<<endl;
+            if (equation_dif[i + 1] == char(39))
+            { tab_positiony[0] = 1, tab_positiony[1] = i; cout<<z<<" y' "<<i<<endl; }
+            else { tab_positiony[1] = i; tab_positiony[0] = 3; cout<<z<<" teste "<<i<<tab_positiony[0]<<endl; }
+        }
+        else if (z == "y") {
+            cout << "False"<<endl;
+            tab_positiony[3] = i;
+            cout<<z<<" y' "<<i<<endl;
         }
     }
-    return tab_position[0],tab_position[1],tab_position[2],tab_position[3];
+    std::cout<<" "<<tab_positiony[0]<<" "<<tab_positiony[1]<<" "<<tab_positiony[2]<<" "<<tab_positiony[3]<<endl;
+    return tab_positiony[0],tab_positiony[1],tab_positiony[2],tab_positiony[3];
 }
 
 
@@ -114,4 +160,5 @@ void Analyse::analyse_position() {
         cout << tab_valeur[e] << " ";
     }
     cout << "\n" << pos_act++ << endl;
-    }
+}
+
