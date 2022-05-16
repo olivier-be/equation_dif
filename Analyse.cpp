@@ -6,7 +6,44 @@ using namespace std;
 Analyse::Analyse(string equation_dif){
     this ->equation_dif=equation_dif;
 }
+int Analyse::value_in_tab_betewen_2_point(int pos_act,int pos_fut,int i){
+    string valeur("");
+    while(pos_act<=pos_fut) {
+        cout<<pos_act<<"pos_act"<<endl;
+        if (pos_act >= tab_position[i] and pos_act != tab_position[tab_position.size() - 1]){
+            if (valeur!=""){tab_valeur.push_back(valeur);
+                cout<<"push_back "<<valeur<<endl;}
+            cout << equation_dif[pos_act] << " seconde " << endl;
+            valeur=equation_dif[pos_act];
+            tab_valeur.push_back(valeur);
+            cout<<"push_back "<<valeur<<endl;
+            pos_act++;
+            break;
+        }
+        else if (pos_act == tab_position[tab_position.size() - 1] and (equation_dif[i]=='+' or equation_dif[i]=='=' or equation_dif[i]==' ' or equation_dif[i]=='/' or equation_dif[i]=='*')){
+            valeur=equation_dif[pos_act];
+            tab_valeur.push_back(valeur);
+            cout<<"push_back "<<valeur<<endl;
+            pos_act++;
+            break;
+        }
+        else if (pos_act == tab_position[tab_position.size() - 1]){
+            valeur = valeur + equation_dif[pos_act];
+            cout<<"valeur "<<valeur<<endl;
+            tab_valeur.push_back(valeur);
+            cout<<"push_back "<<valeur<<endl;
+            pos_act++;
+            break;
+        }
+        else{
+            valeur = valeur + equation_dif[pos_act];
+            cout<<"valeur "<<valeur<<endl;
+        }
+        pos_act++;
 
+    }
+    return pos_act;
+}
 void Analyse::analyse_position()
 {
     bool b;
@@ -14,6 +51,8 @@ void Analyse::analyse_position()
     char z;
     string valeur,reponce;
     string const alphabet("abcdefghijklmnopqrdtuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    cout << char(255)<<"choisie ta forme d'equations differencielles avec pour info prime = ' \n";
+    //cin >> equation_dif;
     taille= equation_dif.size()-1;
     for (int i=0;i<=taille;i++)
     {
@@ -38,38 +77,8 @@ void Analyse::analyse_position()
         valeur = "";
         cout <<"valeur est"<< valeur <<" et i "<< i << " zzzzzzzzzzzzzzzzz\n";
         cout <<"pos_act= "<<pos_act<<" et pos_fut= "<<pos_fut<<endl;
-        while(pos_act<=pos_fut) {
-            if (pos_act >= tab_position[i] and pos_act != tab_position[tab_position.size() - 1]){
-                if (valeur!=""){tab_valeur.push_back(valeur);
-                    cout<<"push_back "<<valeur<<endl;}
-                cout << equation_dif[pos_act] << " seconde " << endl;
-                valeur=equation_dif[pos_act];
-                tab_valeur.push_back(valeur);
-                cout<<"push_back "<<valeur<<endl;
-                pos_act++;
-                break;
-            }
-            else if (pos_act == tab_position[tab_position.size() - 1] and (equation_dif[i]=='+' or equation_dif[i]=='=' or equation_dif[i]==' ' or equation_dif[i]=='/' or equation_dif[i]=='*')){
-                valeur=equation_dif[pos_act];
-                tab_valeur.push_back(valeur);
-                cout<<"push_back "<<valeur<<endl;
-                pos_act++;
-                break;
-            }
-            else if (pos_act == tab_position[tab_position.size() - 1]){
-                valeur = valeur + equation_dif[pos_act];
-                cout<<"valeur "<<valeur<<endl;
-                tab_valeur.push_back(valeur);
-                cout<<"push_back "<<valeur<<endl;
-                pos_act++;
-            }
-            else{
-                valeur = valeur + equation_dif[pos_act];
-                cout<<"valeur "<<valeur<<endl;
-            }
-            pos_act++;
+        pos_act=value_in_tab_betewen_2_point(pos_act,pos_fut,i);
 
-        }
         if (taille>=pos_fut){
             pos_fut=tab_position[i+1];
             cout<<pos_act<<"test last"<< pos_fut<<endl;}
@@ -86,3 +95,4 @@ void Analyse::analyse_position()
     }
                 cout << "\n"<<pos_act++<<endl;
 }
+
