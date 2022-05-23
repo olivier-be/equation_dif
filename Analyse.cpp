@@ -69,25 +69,24 @@ int Analyse:: research(int position_act) {
 
 
 vector<string> Analyse::verif_valeur() {
-    int temp,multiplicateur;
-    multiplicateur=research(tab_positiony[tab_positiony[0]]);
-    search_tab_positiony ();
+    int temp, multiplicateur;
+    multiplicateur = research(tab_positiony[tab_positiony[0]]);
+    search_tab_positiony();
     if (tab_positiony[2] > tab_position[tab_positiony[0]]) {
         for (int e(tab_position[tab_positiony[0]]); e < tab_valeur.size(); e++) {
-        if (tab_valeur[e].size() - 1 == 'y' or tab_valeur[e].size() -2=='y' ) {
-            for (int value; value < tab_valeur[e].size() - 2; value++) {
-                std::istringstream iss(tab_valeur[value]);
-                iss >> temp;
-                //resul+=temp*multiplicateur
-            }
-        }
-        else{
-
-
-                    }
-            }
+            if (tab_valeur[e].size() - 1 == 'y' or tab_valeur[e].size() - 2 == 'y') {
+                for (int value; value < tab_valeur[e].size() - 2; value++) {
+                    std::istringstream iss(tab_valeur[value]);
+                    iss >> temp;
+                    //resul+=temp*multiplicateur
                 }
             }
+        }
+    }
+    vector<string> tempe;
+    tempe.push_back("True");
+    return tempe;
+}
 
     vector<int> Analyse::get_tab_position() {
         analyse_position();
@@ -139,7 +138,7 @@ void Analyse::search_tab_positiony (){
             }
         }
 }
-
+/*
 void Analyse::search_tab_positiony_tab_valeur() {
     analyse_position();
     string z, str;
@@ -172,13 +171,12 @@ void Analyse::search_tab_positiony_tab_valeur() {
         }
     }
 }
-
+*/
     int Analyse::get_tab_positiony() {
         std::cout << " " << tab_positiony[0] << " " << tab_positiony[1] << " " << tab_positiony[2] << " "
                   << tab_positiony[3] << endl;
         return tab_positiony[0], tab_positiony[1], tab_positiony[2], tab_positiony[3];
     }
-
 
     int Analyse::value_in_tab_betewen_2_point(int pos_act, int pos_fut, int i) {
         string valeur("");
@@ -221,6 +219,7 @@ void Analyse::search_tab_positiony_tab_valeur() {
     }
     void Analyse::analyse_position() {
         tab_positiony[0] = -1;
+        tab_valeur.clear();
         int taille, pos_act, pos_fut;
         char z;
         string valeur, reponce;
@@ -269,5 +268,4 @@ void Analyse::search_tab_positiony_tab_valeur() {
         }
         cout << "\n" << pos_act++ << endl;
     }
-
 
